@@ -15,7 +15,7 @@
 
 using namespace nowide;
 
-#define VERSION "1.0"
+#define VERSION "1.0.1"
 #define EFI_GLOBAL_VARIABLE L"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}"
 const std::size_t EFI_LOAD_OPTION_DESCRIPTION_OFFSET = sizeof(std::uint32_t) + sizeof(std::uint16_t);
 const std::uint16_t INVALID_OPTION_ID = std::numeric_limits<std::uint16_t>::max();
@@ -75,12 +75,12 @@ DWORD SetPrivileges()
 
 	DWORD result;
 	// Enable environment edit privileges
-	result = SetPrivilege(hToken, widen(SE_SYSTEM_ENVIRONMENT_NAME).c_str(), true);
+	result = SetPrivilege(hToken, SE_SYSTEM_ENVIRONMENT_NAME, true);
 	if (result != ERROR_SUCCESS) {
 		return result;
 	}
 	// Enable shutdown privileges
-	result = SetPrivilege(hToken, widen(SE_SHUTDOWN_NAME).c_str(), true);
+	result = SetPrivilege(hToken, SE_SHUTDOWN_NAME, true);
 	if (result != ERROR_SUCCESS) {
 		return result;
 	}
