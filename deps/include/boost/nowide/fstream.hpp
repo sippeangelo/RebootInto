@@ -5,25 +5,25 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_FSTREAM_INCLUDED_HPP
-#define NOWIDE_FSTREAM_INCLUDED_HPP
+#ifndef BOOST_NOWIDE_FSTREAM_INCLUDED_HPP
+#define BOOST_NOWIDE_FSTREAM_INCLUDED_HPP
 
 #include <iosfwd>
-#include <nowide/config.hpp>
-#include <nowide/convert.hpp>
-#include <nowide/scoped_ptr.hpp>
+#include <boost/config.hpp>
+#include <boost/nowide/convert.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <fstream>
 #include <memory>
-#include <nowide/filebuf.hpp>
+#include <boost/nowide/filebuf.hpp>
 
-
+namespace boost {
 ///
 /// \brief This namespace includes implementation of the standard library functios
 /// such that they accept UTF-8 strings on Windows. On other platforms it is just an alias
 /// of std namespace (i.e. not on Windows)
 ///
 namespace nowide {
-#if !defined(NOWIDE_WINDOWS)  && !defined(NOWIDE_FSTREAM_TESTS) && !defined(NOWIDE_DOXYGEN)
+#if !defined(BOOST_WINDOWS)  && !defined(BOOST_NOWIDE_FSTREAM_TESTS) && !defined(BOOST_NOWIDE_DOXYGEN)
 
     using std::basic_ifstream;
     using std::basic_ofstream;
@@ -93,7 +93,7 @@ namespace nowide {
         }
             
     private:
-        nowide::scoped_ptr<internal_buffer_type> buf_;
+        boost::scoped_ptr<internal_buffer_type> buf_;
     };
 
     ///
@@ -155,7 +155,7 @@ namespace nowide {
         }
             
     private:
-        nowide::scoped_ptr<internal_buffer_type> buf_;
+        boost::scoped_ptr<internal_buffer_type> buf_;
     };
 
     ///
@@ -217,7 +217,7 @@ namespace nowide {
         }
             
     private:
-        nowide::scoped_ptr<internal_buffer_type> buf_;
+        boost::scoped_ptr<internal_buffer_type> buf_;
     };
 
 
@@ -240,7 +240,7 @@ namespace nowide {
 
 #endif
 } // nowide
-
+} // namespace boost
 
 
 

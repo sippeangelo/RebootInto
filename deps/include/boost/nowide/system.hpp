@@ -5,16 +5,16 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_CSTDLIB_HPP
-#define NOWIDE_CSTDLIB_HPP
+#ifndef BOOST_NOWIDE_CSTDLIB_HPP
+#define BOOST_NOWIDE_CSTDLIB_HPP
 
 #include <stdlib.h>
 #include <errno.h>
-#include <nowide/stackstring.hpp>
-
+#include <boost/nowide/stackstring.hpp>
+namespace boost {
 namespace nowide {
 
-#if !defined(NOWIDE_WINDOWS) && !defined(NOWIDE_DOXYGEN)
+#if !defined(BOOST_WINDOWS) && !defined(BOOST_NOWIDE_DOXYGEN)
 
 using ::system;
 
@@ -39,7 +39,7 @@ inline int system(char const *cmd)
 
 #endif
 } // nowide
-
+} // namespace boost
 
 #endif
 ///

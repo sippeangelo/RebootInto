@@ -5,11 +5,11 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_CSTDLIB_HPP_INCLUDED
-#define NOWIDE_CSTDLIB_HPP_INCLUDED
+#ifndef BOOST_NOWIDE_CSTDLIB_HPP_INCLUDED
+#define BOOST_NOWIDE_CSTDLIB_HPP_INCLUDED
 
-#include <nowide/cenv.hpp>
-#include <nowide/system.hpp>
+#include <boost/nowide/cenv.hpp>
+#include <boost/nowide/system.hpp>
 
 #endif
 ///

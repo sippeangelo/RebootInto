@@ -5,13 +5,13 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_CONVERT_H_INCLUDED
-#define NOWIDE_CONVERT_H_INCLUDED
+#ifndef BOOST_NOWIDE_CONVERT_H_INCLUDED
+#define BOOST_NOWIDE_CONVERT_H_INCLUDED
 
 #include <string>
-#include <nowide/encoding_utf.hpp>
+#include <boost/locale/encoding_utf.hpp>
 
-
+namespace boost {
 namespace nowide {
     ///
     /// \brief Template function that converts a buffer of UTF sequence in range [source_begin,source_end)
@@ -30,7 +30,7 @@ namespace nowide {
             return 0;
         buffer_size --;
         while(source_begin!=source_end) {
-            using namespace nowide::utf;
+            using namespace boost::locale::utf;
             code_point c = utf_traits<CharIn>::template decode<CharIn const *>(source_begin,source_end);
             if(c==illegal || c==incomplete) {
                 rv = 0;
@@ -112,42 +112,42 @@ namespace nowide {
     ///
     /// Convert between Wide - UTF-16/32 string and UTF-8 string.
     ///
-    /// nowide::conv::conversion_error is thrown in a case of a error
+    /// boost::locale::conv::conversion_error is thrown in a case of a error
     ///
     inline std::string narrow(wchar_t const *s)
     {
-        return nowide::conv::utf_to_utf<char>(s);
+        return boost::locale::conv::utf_to_utf<char>(s);
     }
     ///
     /// Convert between UTF-8 and UTF-16 string, implemented only on Windows platform
     ///
-    /// nowide::conv::conversion_error is thrown in a case of a error
+    /// boost::locale::conv::conversion_error is thrown in a case of a error
     ///
     inline std::wstring widen(char const *s)
     {
-        return nowide::conv::utf_to_utf<wchar_t>(s);
+        return boost::locale::conv::utf_to_utf<wchar_t>(s);
     }
     ///
     /// Convert between Wide - UTF-16/32 string and UTF-8 string
     ///
-    /// nowide::conv::conversion_error is thrown in a case of a error
+    /// boost::locale::conv::conversion_error is thrown in a case of a error
     ///
     inline std::string narrow(std::wstring const &s) 
     {
-        return nowide::conv::utf_to_utf<char>(s);
+        return boost::locale::conv::utf_to_utf<char>(s);
     }
     ///
     /// Convert between UTF-8 and UTF-16 string, implemented only on Windows platform
     ///
-    /// nowide::conv::conversion_error is thrown in a case of a error
+    /// boost::locale::conv::conversion_error is thrown in a case of a error
     ///
     inline std::wstring widen(std::string const &s) 
     {
-        return nowide::conv::utf_to_utf<wchar_t>(s);
+        return boost::locale::conv::utf_to_utf<wchar_t>(s);
     }
 
 } // nowide
-
+} // namespace boost
 
 #endif
 ///

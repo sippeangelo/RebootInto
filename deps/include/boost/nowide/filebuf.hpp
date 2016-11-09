@@ -5,25 +5,25 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_FILEBUF_HPP
-#define NOWIDE_FILEBUF_HPP
+#ifndef BOOST_NOWIDE_FILEBUF_HPP
+#define BOOST_NOWIDE_FILEBUF_HPP
 
 #include <iosfwd>
-#include <nowide/config.hpp>
-#include <nowide/stackstring.hpp>
+#include <boost/config.hpp>
+#include <boost/nowide/stackstring.hpp>
 #include <fstream>
 #include <streambuf>
 #include <stdio.h>
 
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #  pragma warning(push)
 #  pragma warning(disable : 4996 4244)
 #endif
 
 
-
+namespace boost {
 namespace nowide {
-#if !defined(NOWIDE_WINDOWS) && !defined(NOWIDE_FSTREAM_TESTS) && !defined(NOWIDE_DOXYGEN)
+#if !defined(BOOST_WINDOWS) && !defined(BOOST_NOWIDE_FSTREAM_TESTS) && !defined(BOOST_NOWIDE_DOXYGEN)
     using std::basic_filebuf;
     using std::filebuf;
 #else // Windows
@@ -93,8 +93,8 @@ namespace nowide {
             wstackstring name;
             if(!name.convert(s)) 
                 return 0;
-            #ifdef NOWIDE_FSTREAM_TESTS
-            FILE *f = ::fopen(s,nowide::convert(smode).c_str());
+            #ifdef BOOST_NOWIDE_FSTREAM_TESTS
+            FILE *f = ::fopen(s,boost::nowide::convert(smode).c_str());
             #else
             FILE *f = ::_wfopen(name.c_str(),smode);
             #endif
@@ -146,7 +146,7 @@ namespace nowide {
             return this;
         }
         
-#ifdef NOWIDE_DEBUG_FILEBUF
+#ifdef BOOST_NOWIDE_DEBUG_FILEBUF
 
         void print_buf(char *b,char *p,char *e)
         {
@@ -201,7 +201,7 @@ namespace nowide {
         
         int overflow(int c)
         {
-#ifdef NOWIDE_DEBUG_FILEBUF
+#ifdef BOOST_NOWIDE_DEBUG_FILEBUF
             print_guard g(this,__FUNCTION__);
 #endif            
             if(!file_)
@@ -239,7 +239,7 @@ namespace nowide {
 
         int underflow()
         {
-#ifdef NOWIDE_DEBUG_FILEBUF
+#ifdef BOOST_NOWIDE_DEBUG_FILEBUF
             print_guard g(this,__FUNCTION__);
 #endif            
             if(!file_)
@@ -272,7 +272,7 @@ namespace nowide {
                             std::ios_base::seekdir seekdir,
                             std::ios_base::openmode /*m*/)
         {
-#ifdef NOWIDE_DEBUG_FILEBUF
+#ifdef BOOST_NOWIDE_DEBUG_FILEBUF
             print_guard g(this,__FUNCTION__);
 #endif            
             if(!file_)
@@ -396,9 +396,9 @@ namespace nowide {
     #endif // windows
     
 } // nowide
+} // namespace boost
 
-
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #  pragma warning(pop)
 #endif
 

@@ -5,25 +5,25 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_CSTDIO_H_INCLUDED
-#define NOWIDE_CSTDIO_H_INCLUDED
+#ifndef BOOST_NOWIDE_CSTDIO_H_INCLUDED
+#define BOOST_NOWIDE_CSTDIO_H_INCLUDED
 
 #include <cstdio>
 #include <stdio.h>
-#include <nowide/config.hpp>
-#include <nowide/convert.hpp>
-#include <nowide/stackstring.hpp>
+#include <boost/config.hpp>
+#include <boost/nowide/convert.hpp>
+#include <boost/nowide/stackstring.hpp>
 #include <errno.h>
 
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #  pragma warning(push)
 #  pragma warning(disable : 4996)
 #endif
 
 
-
+namespace boost {
 namespace nowide {
-#if !defined(NOWIDE_WINDOWS) && !defined(NOWIDE_DOXYGEN)
+#if !defined(BOOST_WINDOWS) && !defined(BOOST_NOWIDE_DOXYGEN)
     using std::fopen;
     using std::freopen;
     using std::remove;
@@ -90,9 +90,9 @@ inline int remove(char const *name)
 }
 #endif
 } // nowide
+} // namespace boost
 
-
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #pragma warning(pop)
 #endif
 

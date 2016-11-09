@@ -8,12 +8,12 @@
 #include <memory>
 #define NOMINMAX
 #include <Windows.h>
-#include <nowide/convert.hpp>
+#include <boost/nowide/convert.hpp>
 //#define TCLAP_NAMESTARTSTRING "/"
 //#define TCLAP_FLAGSTARTSTRING "/"
 #include <tclap/CmdLine.h>
 
-using namespace nowide;
+using namespace boost::nowide;
 
 #define VERSION "1.0.1"
 #define EFI_GLOBAL_VARIABLE L"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}"

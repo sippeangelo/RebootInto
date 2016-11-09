@@ -5,19 +5,19 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_ARGS_HPP_INCLUDED
-#define NOWIDE_ARGS_HPP_INCLUDED
+#ifndef BOOST_NOWIDE_ARGS_HPP_INCLUDED
+#define BOOST_NOWIDE_ARGS_HPP_INCLUDED
 
-#include <nowide/config.hpp>
-#include <nowide/stackstring.hpp>
+#include <boost/config.hpp>
+#include <boost/nowide/stackstring.hpp>
 #include <vector>
-#ifdef NOWIDE_WINDOWS
-#include <nowide/windows.hpp>
+#ifdef BOOST_WINDOWS
+#include <boost/nowide/windows.hpp>
 #endif
 
-
+namespace boost {
 namespace nowide {
-    #if !defined(NOWIDE_WINDOWS) && !defined(NOWIDE_DOXYGEN)
+    #if !defined(BOOST_WINDOWS) && !defined(BOOST_NOWIDE_DOXYGEN)
     class args {
     public:
         args(int &,char **&) {}
@@ -160,7 +160,7 @@ namespace nowide {
     #endif
 
 } // nowide
-
+} // namespace boost
 #endif
 
 ///

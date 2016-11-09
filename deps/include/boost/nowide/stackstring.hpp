@@ -5,13 +5,13 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_DETAILS_WIDESTR_H_INCLUDED
-#define NOWIDE_DETAILS_WIDESTR_H_INCLUDED
-#include <nowide/convert.hpp>
+#ifndef BOOST_NOWIDE_DETAILS_WIDESTR_H_INCLUDED
+#define BOOST_NOWIDE_DETAILS_WIDESTR_H_INCLUDED
+#include <boost/nowide/convert.hpp>
 #include <string.h>
 #include <algorithm>
 
-
+namespace boost {
 namespace nowide {
 
 ///
@@ -147,7 +147,7 @@ typedef basic_stackstring<char,wchar_t,16> short_stackstring;
 
 
 } // nowide
-
+} // namespace boost
 
 #endif
 ///

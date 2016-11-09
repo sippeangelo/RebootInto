@@ -5,24 +5,24 @@
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
-#ifndef NOWIDE_IOSTREAM_HPP_INCLUDED
-#define NOWIDE_IOSTREAM_HPP_INCLUDED
+#ifndef BOOST_NOWIDE_IOSTREAM_HPP_INCLUDED
+#define BOOST_NOWIDE_IOSTREAM_HPP_INCLUDED
 
-#include <nowide/config.hpp>
-#include <nowide/scoped_ptr.hpp>
+#include <boost/nowide/config.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <iostream>
 #include <ostream>
 #include <istream>
 
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #  pragma warning(push)
 #  pragma warning(disable : 4251)
 #endif
 
 
-
+namespace boost {
 namespace nowide {
-    #if !defined(NOWIDE_WINDOWS) && !defined(NOWIDE_DOXYGEN)
+    #if !defined(BOOST_WINDOWS) && !defined(BOOST_NOWIDE_DOXYGEN)
     using std::cout;
     using std::cerr;
     using std::cin;
@@ -34,17 +34,17 @@ namespace nowide {
         class console_output_buffer;
         class console_input_buffer;
         
-        class NOWIDE_DECL winconsole_ostream : public std::ostream {
+        class BOOST_NOWIDE_DECL winconsole_ostream : public std::ostream {
             winconsole_ostream(winconsole_ostream const &);
             void operator=(winconsole_ostream const &);
         public:
             winconsole_ostream(int fd);
             ~winconsole_ostream();
         private:
-            nowide::scoped_ptr<console_output_buffer> d;
+            boost::scoped_ptr<console_output_buffer> d;
         };
 
-        class NOWIDE_DECL winconsole_istream : public std::istream {
+        class BOOST_NOWIDE_DECL winconsole_istream : public std::istream {
             winconsole_istream(winconsole_istream const &);
             void operator=(winconsole_istream const &);
         public:
@@ -53,7 +53,7 @@ namespace nowide {
             ~winconsole_istream();
         private:
             struct data;
-            nowide::scoped_ptr<console_input_buffer> d;
+            boost::scoped_ptr<console_input_buffer> d;
         };
     } // details 
     
@@ -64,32 +64,32 @@ namespace nowide {
     ///
     /// Note, the stream is not synchronized with stdio and not affected by std::ios::sync_with_stdio
     /// 
-    extern NOWIDE_DECL details::winconsole_istream cin;
+    extern BOOST_NOWIDE_DECL details::winconsole_istream cin;
     ///
     /// \brief Same as std::cout, but uses UTF-8
     ///
     /// Note, the stream is not synchronized with stdio and not affected by std::ios::sync_with_stdio
     /// 
-    extern NOWIDE_DECL details::winconsole_ostream cout;
+    extern BOOST_NOWIDE_DECL details::winconsole_ostream cout;
     ///
     /// \brief Same as std::cerr, but uses UTF-8
     ///
     /// Note, the stream is not synchronized with stdio and not affected by std::ios::sync_with_stdio
     /// 
-    extern NOWIDE_DECL details::winconsole_ostream cerr;
+    extern BOOST_NOWIDE_DECL details::winconsole_ostream cerr;
     ///
     /// \brief Same as std::clog, but uses UTF-8
     ///
     /// Note, the stream is not synchronized with stdio and not affected by std::ios::sync_with_stdio
     /// 
-    extern NOWIDE_DECL details::winconsole_ostream clog;
+    extern BOOST_NOWIDE_DECL details::winconsole_ostream clog;
 
     #endif
 
 } // nowide
+} // namespace boost
 
-
-#ifdef NOWIDE_MSVC
+#ifdef BOOST_MSVC
 #  pragma warning(pop)
 #endif
 
