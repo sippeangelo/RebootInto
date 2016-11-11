@@ -4,7 +4,7 @@
 #include "Platform.h"
 #include "UEFI.h"
 
-#define VERSION "2.0"
+#define VERSION "1.1"
 bool VERBOSE = false;
 
 void printBootOrder(UEFI& uefi)
