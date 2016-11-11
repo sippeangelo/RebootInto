@@ -1,9 +1,14 @@
+#ifndef UEFI_h__
+#define UEFI_h__
+
 #include <cstdint>
 #include <limits>
 #include <string>
 #include <vector>
 #include <stdexcept>
 #include <memory>
+#include <boost/locale.hpp>
+#include "Platform.h"
 
 const std::size_t EFI_LOAD_OPTION_DESCRIPTION_OFFSET = sizeof(std::uint32_t) + sizeof(std::uint16_t);
 
@@ -25,7 +30,8 @@ public:
     void WriteBootOrder(const std::vector<BootOption>& bootOrder);
 
 private:
-    std::string ReadDescription(std::uint16_t id);
-    std::string VarNameFromID(std::uint16_t id);
+    std::string readDescription(std::uint16_t id);
+    std::string optionVarFromID(std::uint16_t id);
 };
 
+#endif

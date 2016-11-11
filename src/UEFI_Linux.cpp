@@ -14,7 +14,7 @@ std::pair<T*, std::size_t> ReadVariable(const std::string& name)
     std::uint32_t attributes;
     if (efi_get_variable(EFI_GLOBAL_GUID, name.c_str(), &data, &size, &attributes) != 0) {
         std::stringstream message;
-        message << "Failed to read EFI variable: " << name;
+        message << "Failed to read EFI variable \"" << name << "\"";
         throw std::runtime_error(message.str());
     }
 

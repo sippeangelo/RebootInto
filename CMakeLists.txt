@@ -40,5 +40,8 @@ set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS
 	$<$<CONFIG:RelWithDebInfo>:DEBUG>
 )
 
+set(Boost_USE_STATIC_LIBS on)
+add_definitions(-DBOOST_ALL_NO_LIB)
+
 include_directories(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(src)
