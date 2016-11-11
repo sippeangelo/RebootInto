@@ -1,8 +1,7 @@
 #include <iostream>
 #include <tclap/CmdLine.h>
 #include <boost/optional.hpp>
-#include <unistd.h>
-#include <sys/reboot.h>
+#include "Platform.h"
 #include "UEFI.h"
 
 #define VERSION "2.0"
@@ -16,41 +15,9 @@ void printBootOrder(UEFI& uefi)
     }
 }
 
-// Match a BootOption by numerical ID or Description
-//const UEFI::BootOption* fuzzyFindOption(const std::vector<UEFI::BootOption>& options, const std::string& identifier)
-//{
-//    // Find by ID
-//    try {
-//        std::size_t numNums;
-//        std::uint16_t id = std::stoi(identifier, &numNums);
-//        if (numNums == options.size()) {
-//            auto it = std::find_if(options.begin(), options.end(), [&id](auto& o) { return o.ID == id; });
-//            if (it != options.end()) {
-//                if (VERBOSE) { // --verbose
-//                    std::cout << "UEFI entry matched by ID." << std::endl;
-//                }
-//                return &(*it);
-//            }
-//        }
-//    } catch (std::invalid_argument& e) {
-//    } catch (std::out_of_range& e) { }
-//
-//    // Find by description
-//    {
-//        auto it = std::find_if(options.begin(), options.end(), [&identifier](auto& o) { return o.Description == identifier; });
-//        if (it != options.end()) {
-//            if (VERBOSE) {
-//                std::cout << "UEFI entry matched by description." << std::endl;
-//            }
-//            return &(*it);
-//        }
-//    }
-//
-//    return nullptr;
-//}
-
 int main(int argc, char* argv[])
 {
+	Platform::Initialize();
     UEFI uefi;
 
     // Arguments
@@ -156,9 +123,6 @@ int main(int argc, char* argv[])
             *currentDefault = tmp;
 
             // Apply boot order
-//            for (auto& option : order) {
-//                std::cout << option.ID << ": \"" << option.Description << "\"" << std::endl;
-//            }
             uefi.WriteBootOrder(order);
 
             std::cout << "Boot order changed successfully." << std::endl;
@@ -172,11 +136,7 @@ int main(int argc, char* argv[])
     // Reboot
     if (!arg_noreboot.getValue() && !arg_current.getValue()) { // --noreboot --current
         std::cout << "Rebooting..." << std::endl;
-        sync();
-        if (reboot(RB_AUTOBOOT) != -1) {
-            std::cerr << "Failed to initiate reboot." << std::endl;
-            return 1;
-        }
+		Platform::Reboot();
     }
 
     return 0;

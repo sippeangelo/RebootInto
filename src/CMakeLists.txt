@@ -15,16 +15,19 @@ include_directories(
 )
 
 set(SOURCE_FILES
+	Platform.h
     UEFI.h
     main.cpp
 )
 if(WIN32)
     set(SOURCE_FILES ${SOURCE_FILES}
+		Platform_Windows.cpp
         UEFI_Windows.cpp
     )
 endif()
 if(UNIX)
     set(SOURCE_FILES ${SOURCE_FILES}
+		Platform_Linux.cpp
         UEFI_Linux.cpp
     )
 endif()
