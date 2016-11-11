@@ -53,12 +53,14 @@ int main(int argc, char* argv[])
     VERBOSE = arg_verbose.getValue();
 
     // Print boot order
-    if (arg_list.getValue()) { // --list
-        printBootOrder(uefi);
-        return 0;
-    }
     if (VERBOSE) { // --verbose
+        std::cout << "Current boot order:" << std::endl;
+    }
+    if (VERBOSE || arg_list.getValue()) { // --verbose --list
         printBootOrder(uefi);
+    }
+    if (arg_list.getValue()) { // --list
+        return 0;
     }
 
     // Fetch boot order
@@ -131,6 +133,11 @@ int main(int argc, char* argv[])
         } else {
             std::cout << "Boot entry is already the default! Nothing has been changed." << std::endl;
         }
+    }
+
+    if (VERBOSE) { // --verbose
+        std::cout << "New boot order:" << std::endl;
+        printBootOrder(uefi);
     }
 
     // Reboot

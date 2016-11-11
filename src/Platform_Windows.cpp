@@ -62,7 +62,7 @@ std::pair<std::uint8_t*, std::size_t> Platform::UEFIReadVariable(const std::stri
 	auto nameUTF16 = boost::locale::conv::utf_to_utf<char16_t, char>(name);
 
 	const std::size_t bufferSize = 2048;
-    std::uint8_t* data = new std::uint8_t[bufferSize];
+    std::uint8_t* data = std::malloc(bufferSize);
 	std::size_t size = GetFirmwareEnvironmentVariableW(reinterpret_cast<LPCWSTR>(nameUTF16.c_str()), EFI_GLOBAL_GUID, data, sizeof(std::uint8_t) * bufferSize);
 	if (size == 0) {
 		std::stringstream message;

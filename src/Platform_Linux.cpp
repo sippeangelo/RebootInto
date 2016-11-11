@@ -1,11 +1,10 @@
 #include "Platform.h"
-#include <unistd.h>
 #include <sys/reboot.h>
-
-void Platform::Initialize() 
-{
-	// TODO: root permission check here
+extern "C" {
+#include <efivar.h>
 }
+
+void Platform::Initialize() { }
 
 bool Platform::UEFICheck()
 {
