@@ -40,8 +40,8 @@ if(MSVC)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE /level='requireAdministrator'")
 endif()
 
-add_executable(RebootInto ${SOURCE_FILES})
-target_link_libraries(RebootInto
+add_executable(rebootinto ${SOURCE_FILES})
+target_link_libraries(rebootinto
     ${Boost_LIBRARIES}
     ${efivar_LIBRARIES}
 )
