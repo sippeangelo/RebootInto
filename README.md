@@ -1,5 +1,5 @@
 # RebootInto
-**RebootInto is a Windows utility to modify the UEFI boot order before a reboot.** 
+**RebootInto is a Windows and Linux compatible utility to modify the UEFI boot order before a reboot.** 
 Its purpose is to simplify a dual-boot scenario by modifying the UEFI boot order
 before rebooting, letting you boot into a different operating system without 
 touching your keyboard.
@@ -8,8 +8,8 @@ touching your keyboard.
 ```
 USAGE:
 
-   RebootInto.exe  [-v] [-b] [-n] [-o <offset>] [-c] [-l] [--] [--version]
-                   [-h] <UEFI entry>
+   rebootinto    [-v] [-b] [-n] [-o <offset>] [-c] [-l] [--] [--version]
+                 [-h] <UEFI entry>
 
 
 Where:
