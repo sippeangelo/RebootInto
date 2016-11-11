@@ -2,17 +2,32 @@ project(RebootInto)
 find_package(TCLAP REQUIRED)
 find_package(Boost REQUIRED COMPONENTS locale)
 find_package(Nowide REQUIRED)
+if(UNIX)
+    find_package(efivar REQUIRED)
+endif()
 
 include_directories(
     ${INCLUDE_PATH}
     ${TCLAP_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
     ${Nowide_INCLUDE_DIRS}
+    ${efivar_INCLUDE_DIRS}
 )
 
 set(SOURCE_FILES
+    UEFI.h
     main.cpp
 )
+if(WIN32)
+    set(SOURCE_FILES ${SOURCE_FILES}
+        UEFI_Windows.cpp
+    )
+endif()
+if(UNIX)
+    set(SOURCE_FILES ${SOURCE_FILES}
+        UEFI_Linux.cpp
+    )
+endif()
 source_group("" FILES ${SOURCE_FILES})
 
 if(MSVC)
@@ -24,3 +39,7 @@ if(MSVC)
 endif()
 
 add_executable(RebootInto ${SOURCE_FILES})
+target_link_libraries(RebootInto
+    ${Boost_LIBRARIES}
+    ${efivar_LIBRARIES}
+)
